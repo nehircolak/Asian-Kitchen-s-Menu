@@ -24,9 +24,15 @@ body {
 }
 
 .container {
-  max-width: 1200px; /* Orijinal siteye yakın genişlik */
+  max-width: 1200px; /* Orijinal siteye ysakın genişlik */
 }
 
+
+#searchBox {
+  border: 1px solid #ccc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
 
 /* Başlık */
 h1 {
@@ -110,4 +116,13 @@ h1 {
 }
 .menu-title h4:first-child {
   color: #e00b00e8; 
+}
+
+.footer-link {
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+  color: black;          /* Rengi siyah yapar */
+}
+
+.footer-link:hover {
+  color: black;          /* İstersen hoverda da siyah kalmasını sağlayabilirsin */
 }

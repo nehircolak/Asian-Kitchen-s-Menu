@@ -130,12 +130,12 @@ if (themeToggleBtn) {
 
         // Menüdeki yemekleri filtrele
         // Sadece başlığı aranan metni içerenler kalır
-        const filtrelenmisMenu = menu.filter(function (item) {
+        const filterMenu = menu.filter(function (item) {
             return item.title.toLowerCase().includes(search);
         });
 
         //  Filtrelenmiş menüyü ekrana bas
-        displayMenuItems(filtrelenmisMenu);
+        displayMenuItems(filterMenu);
     });
 
 
@@ -155,7 +155,7 @@ function displayMenuItems(MenuItems) {
                    ${item.desc}
 
                 </p>
-
+                 
             </div>
         </article>
         </div>
