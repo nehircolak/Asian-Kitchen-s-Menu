@@ -1,12 +1,26 @@
 * {
   box-sizing: border-box;
 }
+/* Light theme */
+:root[data-bs-theme="light"] {
+    --bg-color: #fff;
+    --text-color: #000;
+    --card-bg: #f8f9fa;
+}
+
+/* Dark theme */
+:root[data-bs-theme="dark"] {
+    --bg-color: #1b1b1b;      
+    --text-color: #dddddd;    
+    --card-bg: #232323;      
+}
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #f1f5f8;
+  background-color: var(--bg-color); /* light/dark değişim için */
   font-family: "Zilla Slab", serif;
+  color: var(--text-color);
 }
 
 .container {
@@ -57,6 +71,10 @@ h1 {
   display: flex;
   align-items: flex-start;
   margin: 20px 0;
+  background-color: var(--card-bg); /* tema ile değişir */
+  color: var(--text-color); /* tema ile değişir */
+  border-radius: 10px;
+  padding: 1rem;
 }
 
 /* Fotoğraf */
@@ -64,7 +82,7 @@ h1 {
   width: 30%;
   height: 200px;
   object-fit: cover;
-  border: 0.25rem solid black;
+  border: 0.25rem solid var(--text-color); /* tema ile değişir */
   border-radius: 10px;
 }
 
@@ -77,7 +95,7 @@ h1 {
 .menu-title {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text-color);
 }
 
 .price {

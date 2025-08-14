@@ -84,6 +84,7 @@ const menu = [
 
 const sectionCenter = document.querySelector(`.section-center`);
 const container = document.querySelector(`.btn-container`)
+const searchBox = document.querySelector('#searchBox'); // search box için
 
 // load items
 window.addEventListener(`DOMContentLoaded`, function () {
@@ -91,12 +92,59 @@ window.addEventListener(`DOMContentLoaded`, function () {
     displayMenuButtons();
 });
 
+// Tema toggle
+/*!
+ * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+ * Copyright 2011-2025 The Bootstrap Authors
+ * Licensed under the Creative Commons Attribution 3.0 Unported License.
+ */
+
+// Tema toggle için mevcut tema
+const storedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-bs-theme', storedTheme);
+
+// Butondaki ikon güncelle
+const themeIcon = document.getElementById('themeIcon');
+if (themeIcon) {
+    themeIcon.className = storedTheme === 'light' ? 'bi bi-sun' : 'bi bi-moon';
+}
+
+// Tema toggle butonu
+const themeToggleBtn = document.getElementById('themeToggle');
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.className = newTheme === 'light' ? 'bi bi-sun' : 'bi bi-moon';
+    });
+}
+
+
+// Search box filtreleme
+    // Kullanıcı yazı yazdığında tetiklenecek olay
+    searchBox.addEventListener('input', function () {
+        // Kullanıcının yazdığı metin
+        const search = searchBox.value.toLowerCase();
+
+        // Menüdeki yemekleri filtrele
+        // Sadece başlığı aranan metni içerenler kalır
+        const filtrelenmisMenu = menu.filter(function (item) {
+            return item.title.toLowerCase().includes(search);
+        });
+
+        //  Filtrelenmiş menüyü ekrana bas
+        displayMenuItems(filtrelenmisMenu);
+    });
+
+
 function displayMenuItems(MenuItems) {
     let displayMenu = MenuItems.map(function (item) {
 
         return `
-         <div class="col-md-6 col-lg-6 mb-4">
-        <article class="menu-item d-flex">
+         <div class="col-md-6 mb-4">
+        <article class="menu-item ">
             <img src=${item.img} class="photo" alt=${item.title} >
             <div class="item-info">
                 <header class="menu-title">
@@ -114,28 +162,33 @@ function displayMenuItems(MenuItems) {
         `;
 
     }).join("");
+
     // row kapsayıcısı ekliyoruz
-  sectionCenter.innerHTML = `<div class="row">${displayMenu}</div>`;
+    sectionCenter.innerHTML = `<div class="row">${displayMenu}</div>`;
 }
 
 function displayMenuButtons() {
 
-    const categories = menu.reduce(
-        function (values, item) {
-            if (!values.includes(item.category)) {
-                values.push(item.category);
-            }
-            return values
-        }, [`all`]
-    );
+    const categories = ['all']; // Başlangıç olarak "all" kategorisi 
+
+    // Menüdeki her item için dön
+    menu.forEach(item => {
+        // Eğer bu kategori listede yoksa ekle
+        if (!categories.includes(item.category)) {
+            categories.push(item.category);
+        }
+    });
+
     const categoryBtns = categories.map(function (category) {
         return `
-        <button class="filter-btn" type="button" 
+        <button class="btn btn-outline-primary filter-btn m-1" type="button" 
         data-id=${category}> ${category} </button>
         `
     })
         .join("");
+
     container.innerHTML = categoryBtns;
+
     const filterBtns = document.querySelectorAll(`.filter-btn`);
     // filter items
 
