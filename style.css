@@ -6,13 +6,15 @@
     --bg-color: #fff;
     --text-color: #000;
     --card-bg: #f8f9fa;
+    --footer-bg: #f1f1f1; /* Light modda footer arka plan */
 }
 
 /* Dark theme */
 :root[data-bs-theme="dark"] {
-    --bg-color: #1b1b1b;      
-    --text-color: #dddddd;    
-    --card-bg: #232323;      
+    --bg-color: #1b1b1b;          
+    --card-bg: #232323;  
+    --footer-bg: #181818; /* footer arka planı koyu */
+    --text-color: #e0e0e0; /* yazılar açık gri */    
 }
 
 body {
@@ -105,7 +107,7 @@ h1 {
 }
 
 .price {
-  color: #e00b00e8;
+  color: #f9443b;
   font-weight: bold;
 }
 
@@ -115,14 +117,22 @@ h1 {
   line-height: 1.4;
 }
 .menu-title h4:first-child {
-  color: #e00b00e8; 
+  color: #fc5e56; 
+}
+
+/* Footer ayarları */
+footer {
+  background-color: var(--footer-bg) !important;;
+  color: var(--text-color)!important;;
+  padding: 1rem 0;
+  text-align: center;
 }
 
 .footer-link {
-  text-decoration: none; /* Alt çizgiyi kaldırır */
-  color: black;          /* Rengi siyah yapar */
+  text-decoration: none; /* alt çizgi yok */
+ color: var(--text-color) !important;         /* parent color alır */
 }
 
 .footer-link:hover {
-  color: black;          /* İstersen hoverda da siyah kalmasını sağlayabilirsin */
+   color: var(--text-color) !important;
 }
