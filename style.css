@@ -7,7 +7,8 @@
     --text-color: #000;
     --card-bg: #f8f9fa;
     --footer-bg: #f1f1f1; /* Light modda footer arka plan */
-}
+    --title-color: #B71C1C; /* koyu kırmızı - light mod */
+  }
 
 /* Dark theme */
 :root[data-bs-theme="dark"] {
@@ -15,7 +16,8 @@
     --card-bg: #232323;  
     --footer-bg: #181818; /* footer arka planı koyu */
     --text-color: #e0e0e0; /* yazılar açık gri */    
-}
+    --title-color: #EF5350; /* açık kırmızı - dark mod */
+  }
 
 body {
   margin: 0;
@@ -117,7 +119,7 @@ h1 {
   line-height: 1.4;
 }
 .menu-title h4:first-child {
-  color: #fc5e56; 
+  color: var(--title-color);
 }
 
 /* Footer ayarları */
